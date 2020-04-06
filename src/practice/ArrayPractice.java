@@ -1,5 +1,7 @@
 package practice;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -43,6 +45,8 @@ public class ArrayPractice {
         for (int i =0;i<strArray.length;i++){
             System.out.print(intArray[i] + " ");
         }
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(1);
     }
 
 }

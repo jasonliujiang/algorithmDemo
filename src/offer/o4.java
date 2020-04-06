@@ -16,7 +16,7 @@ import java.util.Arrays;
  *递归构建二叉树
  * 已知前序和中序，构建后序
  * */
-public class o4 {
+public class  o4 {
     public TreeNode reConstructBinaryTree(int[] pre, int[] in) {
 
 
