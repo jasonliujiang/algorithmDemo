@@ -20,14 +20,57 @@ public class o12 {
         if (exponent == 0){
             return 1;
         }
-        double result = 1.0d;
-        int e = exponent>0?exponent:-exponent;
-        for (int i = 0; i < e; i++) {
-            result = base*result;
-        }
+
+        int absExponent = exponent>0?exponent:-exponent;
+
+        //double result = PowOfExponent(base,absExponent);
+        double result = PowOfExponentRecursive(base,absExponent);
         //根据指数正负判断返回值
         return exponent>0?result:1/result;
 
         //return Math.pow(base,exponent);
+    }
+
+    /**
+     * 常规思路：循环累乘
+     * @param base
+     * @param absExponent
+     * @return
+     */
+    public double PowOfExponent(double base,int absExponent){
+        double result = 1.0d;
+        for (int i = 0; i < absExponent; i++) {
+            result = base*result;
+        }
+        return result;
+    }
+
+    /**
+     *
+     * @param base
+     * @param absExponent
+     * @return
+     */
+    public double PowOfExponentRecursive(double base,int absExponent){
+        if (absExponent == 0){
+            return 1;
+        }
+
+        if (absExponent == 1){
+            return base;
+        }
+
+        //用右移运算符代替除以2
+        double result = PowOfExponentRecursive(base,absExponent >> 1);
+
+
+        result *= result;
+
+        //判断奇偶 &1=0偶数  &1=1奇数
+        if ((absExponent&1) == 1){
+            result *=base;
+        }
+
+        return result;
     }
 }
