@@ -5,6 +5,7 @@ package offer;
  */
 public class o23 {
     public boolean VerifySquenceOfBST(int [] sequence) {
-
+        return false;
     }
+
 }
