@@ -20,9 +20,16 @@ public class QuickSort {
         if (left>=right){
             return;
         }
-        int target = num[left];
-        int i = left;
-        int j = right;
+        int index = partition(num,left,right);
+        QuickSort(num,left,index-1);
+        QuickSort(num,index+1,right);
+    }
+
+    private static int partition(int[] num, int start, int end) {
+
+        int target = num[start];
+        int i = start;
+        int j = end;
         while (i<j){
             while (num[j]>=target&&i<j){
                 j--;
@@ -39,10 +46,11 @@ public class QuickSort {
             }
         }
 
-        num[left] = num[i];
+        num[start] = num[i];
         num[i] = target;
-        QuickSort(num,left,i-1);
-        QuickSort(num,i+1,right);
+
+
+        return i;
     }
 
     /**
