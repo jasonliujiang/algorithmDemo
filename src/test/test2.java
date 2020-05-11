@@ -8,10 +8,8 @@ import java.util.ArrayList;
 
 public class test2 {
     public static void main(String[] args) {
-        o57 o57 = new o57();
-        int [] array  = new int[]{1,2,4,7,11,15};
-        ArrayList list = o57.FindNumbersWithSum(array,15);
-        System.out.println(list);
+        System.out.println(2%5);
+        System.out.println(4%4);
     }
 
 
