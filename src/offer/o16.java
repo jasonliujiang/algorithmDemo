@@ -1,51 +1,76 @@
 package offer;
 
-import sun.security.util.Password;
-
 /**
- * 输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。
+ * 给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。
+ *
+ * 保证base和exponent不同时为0
  */
 public class o16 {
-    //递归版本
-    public ListNode MergeRe(ListNode list1,ListNode list2) {
-        if (list1 == null){
-            return list2;
+    /**
+     * 注意判断指数的正负0，底数是否为0等情况
+     * @param base
+     * @param exponent
+     * @return
+     */
+    public double Power(double base, int exponent) {
+        //判断底数为0的情况
+        if (base == 0){
+            return 0;
         }
-        if (list2 == null){
-            return list1;
+        if (exponent == 0){
+            return 1;
         }
-        if (list1.val>list2.val){
-            list2.next = MergeRe(list1,list2.next);
-            return list1;
-        }else {
-            list1.next = MergeRe(list1.next,list2);
-            return list2;
-        }
+
+        int absExponent = exponent>0?exponent:-exponent;
+
+        //double result = PowOfExponent(base,absExponent);
+        double result = PowOfExponentRecursive(base,absExponent);
+        //根据指数正负判断返回值
+        return exponent>0?result:1/result;
+
+        //return Math.pow(base,exponent);
     }
 
-    //非递归版本
-    public ListNode Merge(ListNode list1,ListNode list2) {
-        ListNode result = new ListNode(-1);
-        result.next = null;
-        ListNode root = result;
-        while (list1!=null&&list2!=null){
-            if (list1.val>=list2.val){
-                result.next = list2;
-                result = list2; //result.next
-                list2 = list2.next;
-            }else {
-                result.next = list1;
-                result = list1;  //result.next
-                list1 = list1.next;
-            }
+    /**
+     * 常规思路：循环累乘
+     * @param base
+     * @param absExponent
+     * @return
+     */
+    public double PowOfExponent(double base,int absExponent){
+        double result = 1.0d;
+        for (int i = 0; i < absExponent; i++) {
+            result = base*result;
         }
-        if (list1 == null){
-            result.next = list2;
-        }else {
-            result.next = list1;
+        return result;
+    }
+
+    /**
+     *
+     * @param base
+     * @param absExponent
+     * @return
+     */
+    public double PowOfExponentRecursive(double base,int absExponent){
+        if (absExponent == 0){
+            return 1;
         }
 
-        return root.next;
+        if (absExponent == 1){
+            return base;
+        }
 
+        //用右移运算符代替除以2
+        double result = PowOfExponentRecursive(base,absExponent >> 1);
+
+
+        result *= result;
+
+        //判断奇偶 &1=0偶数  &1=1奇数
+        if ((absExponent&1) == 1){
+            result *=base;
+        }
+
+        return result;
     }
 }
