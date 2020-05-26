@@ -77,11 +77,11 @@ public class H101 {
 //    //而不是extends Comparator
 //    static class MyComparator implements Comparator<Integer> {
 //        @Override
-//        public int compare(Integer o1, Integer o2) {
+//        public int compare(Integer o1, Integer o5) {
 //            //如果n1小于n2，我们就返回正值，如果n1大于n2我们就返回负值，
-//            if (o1 < o2) {
+//            if (o1 < o5) {
 //                return 1;
-//            } else if (o1 > o2) {
+//            } else if (o1 > o5) {
 //                return -1;
 //            } else {
 //                return 0;
