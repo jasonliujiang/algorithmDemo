@@ -1,51 +1,46 @@
 package offer;
 
-import java.util.ArrayList;
-import java.util.Stack;
-
-/**
- * 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。
- * 要求不能创建任何新的结点，只能调整树中结点指针的指向。
- */
+/*
+ * 输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）
+ * */
 public class o26 {
-    /**
-     * 非递归实现
-     * 核心思路是中序遍历的非递归算法
-     * 修改当前遍历节点与前一遍历节点的指针指向
-     * @param pRootOfTree
-     * @return
-     */
-    public TreeNode Convert(TreeNode pRootOfTree) {
-        if (pRootOfTree == null){
-            return null;
-        }
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode p = pRootOfTree;
-        //用于保存中序遍历的上一个节点
-        TreeNode pre = null;
+    public boolean HasSubtree(TreeNode root1, TreeNode root2) {
+        //先递归判断两棵树的根节点是否相同
 
-        boolean isFirst = true;
-
-        while (p!=null || !stack.isEmpty()){
-            while (p!=null){
-                stack.push(p);
-                p = p.left;
+        TreeNode A = root1;
+        TreeNode B = root2;
+        boolean result = false;
+        if (A != null && B != null) {
+            //如果根节点相同，判断子节点是否相同
+            if (A.val == B.val){
+                result = DoesTree1HaveTree2(A,B);
             }
-
-            p = stack.pop();
-            if (isFirst){
-                //将中序遍历中的第一个节点记为root
-                pRootOfTree = p;
-                pre = pRootOfTree;
-                isFirst = false;
-            }else {
-                pre.right = p;
-                p.left = pre;
-                pre = p;
-
+            //以result遍历，防止出现树节点重复的情况
+            if (!result){
+                result = HasSubtree(A.left,B);
             }
-            p = p.right;
+            if (!result){
+                result = HasSubtree(A.right,B);
+            }
         }
-        return pRootOfTree;
+
+
+        return result;
+    }
+
+    private boolean DoesTree1HaveTree2(TreeNode tree1, TreeNode tree2) {
+        TreeNode A = tree1;
+        TreeNode B = tree2;
+
+        if (B == null){
+            return true;
+        }
+        if (A == null){
+            return false;
+        }
+        if (A.val != B.val){
+            return false;
+        }
+        return DoesTree1HaveTree2(A.left,B.left) && DoesTree1HaveTree2(A.right,B.right);
     }
 }

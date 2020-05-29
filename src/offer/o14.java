@@ -1,44 +1,47 @@
 package offer;
-/*
-* 输入一个链表，输出该链表中倒数第k个结点。
-* */
+
+/**
+ * 剪绳子
+ * 给你一根长度为n的绳子，请把绳子剪成整数长的m段（m、n都是整数，n>1并且m>1），每段绳子的长度记为k[0],k[1],...,k[m]。请问k[0]xk[1]x...xk[m]可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。
+ */
 public class o14 {
     /**
-     * 设置两个指针，间距为n,如果前一个指针遍历到尾部，则后一个指针的位置即为所求节点
-     * @param head
-     * @param k
+     * 采用动态规划实现
+     *
+     * @param target
      * @return
      */
-    public ListNode FindKthToTail(ListNode head,int k) {
-        if (head == null||k==0){
-            return null;
+    public int cutRope(int target) {
+        if (target < 2) {
+            return 0;
         }
-        //定义两个指针
-        ListNode  first = head;
-        ListNode second = head;
-        //先遍历k次，获取两个指针的对应的值
-        for (int i = 0; i <k-1; i++) {
+        if (target == 2) {
+            return 1;
+        }
+        if (target == 3) {
+            return 2;
+        }
 
-            if (second.next!=null){
-                second = second.next;
-            }else {
-                return null;
+        int[] maxArr = new int[target + 1];
+
+        maxArr[0] = 0;
+        maxArr[1] = 1;
+        maxArr[2] = 2;
+        maxArr[3] = 3;
+
+        int max = 0;
+
+        for (int i = 4; i <= target; i++) {
+            for (int j = 1; j <= i / 2; j++) {
+                int tmp = maxArr[j] * maxArr[i - j];
+
+                if (max < tmp) {
+                    maxArr[i] = tmp;
+                }
             }
 
         }
-        //两个指针一起向后遍历，如果前一个之前遍历到尾部，则后一个指针的节点即是所求节点
-        while (true){
 
-            if (second.next != null){
-                first = first.next;
-                second = second.next;
-
-            }else {
-                return first;
-            }
-        }
-
-
+        return maxArr[target];
     }
-
 }

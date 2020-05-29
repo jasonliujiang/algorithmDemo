@@ -3,7 +3,7 @@ package offer;
 /**
  * 操作给定的二叉树，将其变换为源二叉树的镜像。
  */
-public class o18 {
+public class o27 {
     public void Mirror(TreeNode root) {
         //由画图得，通过前序遍历递归翻转
         if (root == null){

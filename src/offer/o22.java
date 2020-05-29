@@ -1,51 +1,44 @@
 package offer;
-
 /*
-public class TreeNode {
-    int val = 0;
-    TreeNode left = null;
-    TreeNode right = null;
-
-    public TreeNode(int val) {
-        this.val = val;
-    }
-}
+* 输入一个链表，输出该链表中倒数第k个结点。
 * */
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-
-/**
- * 从上往下打印出二叉树的每个节点，同层节点从左至右打印。
- */
 public class o22 {
-
     /**
-     * 通过队列的数据结构完成二叉树的层序遍历
-     * @param root
+     * 设置两个指针，间距为n,如果前一个指针遍历到尾部，则后一个指针的位置即为所求节点
+     * @param head
+     * @param k
      * @return
      */
-    public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
-        ArrayList<Integer> result = new ArrayList<>();
-        queue.add(root);
+    public ListNode FindKthToTail(ListNode head,int k) {
+        if (head == null||k==0){
+            return null;
+        }
+        //定义两个指针
+        ListNode  first = head;
+        ListNode second = head;
+        //先遍历k次，获取两个指针的对应的值
+        for (int i = 0; i <k-1; i++) {
 
-        while (!queue.isEmpty()){
-            TreeNode tnVal = queue.poll();
-            //可能存在当前节点为空的情况，跳出循环继续遍历下一个节点
-            if (tnVal == null){
-                continue;
+            if (second.next!=null){
+                second = second.next;
+            }else {
+                return null;
             }
-            result.add(tnVal.val);
-            if (tnVal.left!=null | tnVal.right !=null){
-                queue.add(tnVal.left);
-                queue.add(tnVal.right);
+
+        }
+        //两个指针一起向后遍历，如果前一个之前遍历到尾部，则后一个指针的节点即是所求节点
+        while (true){
+
+            if (second.next != null){
+                first = first.next;
+                second = second.next;
+
+            }else {
+                return first;
             }
         }
 
-        return result;
-    }
 
+    }
 
 }

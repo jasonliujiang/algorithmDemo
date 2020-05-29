@@ -35,4 +35,23 @@ public class o6 {
 
 
     }
+
+    /**
+     * 采用递归的方式实现
+     * @param listNode
+     * @return
+     */
+
+    public ArrayList<Integer> list2 = new ArrayList();
+    public ArrayList<Integer> printListFromTailToHead2(ListNode listNode) {
+        if (listNode!=null){
+            if (listNode.next != null) {
+                printListFromTailToHead2(listNode.next);
+            }
+            list2.add(listNode.val);
+        }
+
+        return list2;
+
+    }
 }

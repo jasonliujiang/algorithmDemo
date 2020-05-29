@@ -1,28 +1,40 @@
 package offer;
 
-import java.util.Stack;
-
 /**
- * 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。
- * 假设压入栈的所有数字均不相等。
- * 例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。
- * （注意：这两个序列的长度是相等的）
+ * 输入一个整数数组，实现一个函数来调整该数组中数字的顺序，
+ * 使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。
  */
 public class o21 {
-    //建立一个辅助栈，模拟弹出的过程
-    public boolean IsPopOrder(int [] pushA,int [] popA) {
-        Stack<Integer> dataStack = new Stack<Integer>();
-
-        for (int popIndex = 0,pushIndex = 0; pushIndex < popA.length; pushIndex++) {
-            dataStack.push(pushA[pushIndex]);
-            while (!dataStack.isEmpty()&&popIndex<popA.length&&dataStack.peek() == popA[popIndex]){
-                dataStack.pop();
-                popIndex++;
-            }
+    //参考快速排序，在
+    public void reOrderArray(int [] array) {
+        int len = array.length;
+        if (array.length<=1){
+            return;
         }
-
-
-        return dataStack.isEmpty();
-
+        int i = 0;
+        while (i<len){
+            int j = i+1;
+            //如果i为偶数，j向前遍历直到遇到奇数
+            if (array[i]%2 == 0){
+                //如果j为偶数，一直前进
+                while (array[j]%2 == 0){
+                    if (j == len-1){
+                        return;
+                    }
+                    j++;
+                }
+                //此时j为奇数
+                int count = j-i;
+                int tmp = array[i];
+                array[i] = array[j];
+                //对交换位置之间的元素整体后移
+                while (count>1){
+                    array[i+count] = array[i+count-1];
+                    count--;
+                }
+                array[i+1] = tmp;
+            }
+            i++;
+        }
     }
 }

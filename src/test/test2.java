@@ -1,6 +1,7 @@
 package test;
 
 import offer.TreeNode;
+import offer.o13;
 import offer.o53;
 import offer.o57;
 
@@ -13,21 +14,7 @@ import java.util.function.Function;
 public class test2 {
     public static void main(String[] args) {
 
-        String[] atp = {"Rafael Nadal", "Novak Djokovic",
-                "Stanislas Wawrinka",
-                "David Ferrer","Roger Federer",
-                "Andy Murray","Tomas Berdych",
-                "Juan Martin Del Potro"};
-        //List<String> players =  Arrays.asList(atp);
-
-        //players.forEach((player) -> System.out.println(player+"!!!"));
-
-        //players.forEach(System.out::println);
-
-        Comparator<String> sortByName = (String s1,String s2) -> (s1.compareTo(s2));
-        Arrays.sort(atp,sortByName);
-
-        Arrays.sort(atp,(String s1,String s2)-> (s1.compareTo(s2)));
+        System.out.println(0+'0');
 
     }
 

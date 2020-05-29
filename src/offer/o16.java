@@ -46,7 +46,7 @@ public class o16 {
     }
 
     /**
-     *
+     *  n(logn)
      * @param base
      * @param absExponent
      * @return
