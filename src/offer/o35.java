@@ -17,6 +17,12 @@ public class RandomListNode {
  * （注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）
  */
 public class o35 {
+    /**
+     * 最精简的算法分如下3步
+     * 还有一种用空间换时间的方法，用哈希表记录下每个节点和复制节点的11对应关系
+     * @param pHead
+     * @return
+     */
     public RandomListNode Clone(RandomListNode pHead)
     {
         CloneNodes(pHead);

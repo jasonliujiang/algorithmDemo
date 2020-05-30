@@ -14,7 +14,26 @@ import java.util.function.Function;
 public class test2 {
     public static void main(String[] args) {
 
-        System.out.println(0+'0');
+        System.out.println(0%2);
+        System.out.println(1%2);
+        System.out.println(2%2);
+
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        int xdr = 0;
+        if (result.size() <=  xdr){
+            result.add(xdr,new ArrayList<Integer>());
+            result.get(xdr).add(1);
+        }else {
+            result.get(xdr).add(1);
+        }
+        //result.add(0,new ArrayList<Integer>(2));
+
+
+        result.get(0).add(1);
+        result.get(0).add(2);
+        result.get(0).add(3);
+        //result.get(1).add(6);
+        System.out.println(result);
 
     }
 
