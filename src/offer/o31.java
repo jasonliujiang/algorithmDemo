@@ -10,12 +10,12 @@ import java.util.Stack;
  */
 public class o31 {
     //建立一个辅助栈，模拟弹出的过程
-    public boolean IsPopOrder(int [] pushA,int [] popA) {
+    public boolean IsPopOrder(int[] pushA, int[] popA) {
         Stack<Integer> dataStack = new Stack<Integer>();
 
-        for (int popIndex = 0,pushIndex = 0; pushIndex < popA.length; pushIndex++) {
+        for (int popIndex = 0, pushIndex = 0; pushIndex < popA.length; pushIndex++) {
             dataStack.push(pushA[pushIndex]);
-            while (!dataStack.isEmpty()&&popIndex<popA.length&&dataStack.peek() == popA[popIndex]){
+            while (!dataStack.isEmpty() && popIndex < popA.length && dataStack.peek() == popA[popIndex]) {
                 dataStack.pop();
                 popIndex++;
             }

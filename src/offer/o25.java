@@ -14,13 +14,19 @@ public class o25 {
         if (list2 == null){
             return list1;
         }
+
+        ListNode pMergedHead = null;
         if (list1.val>list2.val){
-            list2.next = MergeRe(list1,list2.next);
-            return list1;
+            pMergedHead = list2;
+            pMergedHead.next = MergeRe(list1,list2.next);
+            //return list1;
         }else {
-            list1.next = MergeRe(list1.next,list2);
-            return list2;
+            pMergedHead = list1;
+            pMergedHead.next = MergeRe(list1.next,list2);
+            //return list2;
         }
+
+        return pMergedHead;
     }
 
     //非递归版本

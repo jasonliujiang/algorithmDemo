@@ -1,39 +1,70 @@
 package offer;
 
 /**
- * 输入一个非空整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同。
+ * 链表中环的入口节点
+ *  给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。
  */
 public class o23 {
-    //根据二叉搜索树的特性，左子树的节点值根节点小，右子树的节点值都比根节点大
-    public boolean VerifySquenceOfBST(int [] sequence) {
-        if(sequence == null||sequence.length == 0){
-            return false;
-        }
-        //递归调用
-        return verify(sequence,0,sequence.length-1);
-    }
+    /**
+     * 参考22题，设置两个指针，首先需要解决两个问题
+     *  1.确定是否包含环：一个指针走两步一个指针走一步，如果追上了后面的则包含环
+     *  2.确定环的位置：  计算出环有n个节点，一个指针先走n个节点，当两个指针相遇的时候即为环的入口
+     * @param pHead
+     * @return
+     */
+    public ListNode EntryNodeOfLoop(ListNode pHead)
+    {
 
-    private boolean verify(int[] sequence, int start, int last) {
-        //判断返回正确的情况
-        if (last-start<=1){
-            return true;
-        }
+        ListNode loopNode = findLoopNode(pHead);
 
-        //获取每次递归的根节点
-        int rootVal = sequence[last];
-        //左右子树的分割点，代表右子树的第一个节点
-        int cutIndex = start;
-        while (cutIndex<last&&sequence[cutIndex]<rootVal){
-            cutIndex++;
-        }
-        //遍历右子树，如果有节点小于根节点则返回false
-        for (int i = cutIndex;i<last;i++){
-            if (sequence[i]<rootVal){
-                return false;
+        if (loopNode!=null){
+            //计算环中节点的数量，快慢指针相遇一定在环中，通过计数循环一次获得
+            int value = loopNode.val;
+            int count = 1;
+            while (loopNode.next.val != value){
+                loopNode = loopNode.next;
+                count++;
             }
-        }
-        //递归
-        return verify(sequence,start,cutIndex-1)&&verify(sequence,cutIndex,last-1);
-    }
 
+            //确定环的位置
+            ListNode first = pHead;
+            ListNode second = pHead;
+            for (int i = 0; i < count; i++) {
+                first = first.next;
+            }
+
+            while (first.val!=second.val){
+                first = first.next;
+                second = second.next;
+            }
+            return first;
+
+
+        }else {
+            return null;
+        }
+
+
+
+
+    }
+    public ListNode findLoopNode(ListNode pHead){
+        if (pHead == null) {
+            return null;
+        }
+        //第一次判断，一快一慢两个指针
+        ListNode pFastNode = pHead;
+        ListNode pSlowNode = pHead;
+
+
+        while (pFastNode != null && pFastNode.next !=null) {
+            pFastNode = pFastNode.next.next;
+            pSlowNode = pSlowNode.next;
+            if (pFastNode.val == pSlowNode.val){
+                return pSlowNode;
+            }
+
+        }
+        return null;
+    }
 }
