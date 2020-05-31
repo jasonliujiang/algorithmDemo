@@ -64,6 +64,7 @@ class Singleton3 {
  *
  */
 class Singleton4 {
+    //JVM指令重排优化的存在,构造方法被调用之前可能就被分配内存地址了，导致获取到状态不对的对象。
     private volatile static Singleton4 instance;
 
     private Singleton4() {
