@@ -13,27 +13,23 @@ import java.util.function.Function;
 
 public class test2 {
     public static void main(String[] args) {
+        int [] nums = new int[]{1,2,3,4};
+        int length = nums.length;
+        int[] left = new int[length];
+        int[] right = new int[length];
+        int [] result = new int[length];
 
-        System.out.println(0%2);
-        System.out.println(1%2);
-        System.out.println(2%2);
-
-        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
-        int xdr = 0;
-        if (result.size() <=  xdr){
-            result.add(xdr,new ArrayList<Integer>());
-            result.get(xdr).add(1);
-        }else {
-            result.get(xdr).add(1);
+        for (int i = 0; i < length; i++) {
+            int index = 0;
+            left[i] = 1;
+            while (index<i){
+                left[i] *= left[index];
+                index++;
+            }
+            System.out.println(left[i]);
         }
-        //result.add(0,new ArrayList<Integer>(2));
 
 
-        result.get(0).add(1);
-        result.get(0).add(2);
-        result.get(0).add(3);
-        //result.get(1).add(6);
-        System.out.println(result);
 
     }
 
