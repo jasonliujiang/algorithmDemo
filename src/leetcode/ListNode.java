@@ -1,7 +1,7 @@
-package offer;
+package leetcode;
 
 public class ListNode {
-     int val;
+    int val;
     ListNode next = null;
 
     public ListNode(int val) {
