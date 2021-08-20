@@ -13,6 +13,7 @@ package leetcode;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class L2 {
+
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int tag = 0;
         ListNode result = new ListNode(-1);
@@ -22,22 +23,22 @@ public class L2 {
         ListNode q = l2;
 
         while (p != null || q != null) {
-            int num1 = (p!=null)? p.val:0;
-            int num2 = (q!=null)? q.val:0;
+            int num1 = (p != null) ? p.val : 0;
+            int num2 = (q != null) ? q.val : 0;
 
-            int sum = num1+num2+tag;
+            int sum = num1 + num2 + tag;
 
-            tag = sum/10;
+            tag = sum / 10;
 
-            node.next = new ListNode(sum%10);
+            node.next = new ListNode(sum % 10);
 
             node = node.next;
 
-            if (p!=null){
+            if (p != null) {
                 p = p.next;
             }
 
-            if (q!=null){
+            if (q != null) {
                 q = q.next;
             }
 
