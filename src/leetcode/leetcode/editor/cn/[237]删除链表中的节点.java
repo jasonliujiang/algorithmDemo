@@ -1,4 +1,4 @@
-//请编写一个函数，用于 删除单链表中某个特定节点 。在设计函数时需要注意，你无法访问链表的头节点 head ，只能直接访问 要被删除的节点 。 
+package leetcode.leetcode.editor.cn;//请编写一个函数，用于 删除单链表中某个特定节点 。在设计函数时需要注意，你无法访问链表的头节点 head ，只能直接访问 要被删除的节点 。
 //
 // 题目数据保证需要删除的节点 不是末尾节点 。 
 //
@@ -56,7 +56,6 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 
 
-import leetcode.leetcode.editor.cn.ListNode;
 
 /**
  * Definition for singly-linked list.
@@ -66,7 +65,7 @@ import leetcode.leetcode.editor.cn.ListNode;
  *     ListNode(int x) { val = x; }
  * }
  */
-class Solution {
+class Solution237 {
     public void deleteNode(ListNode node) {
         //先把下一个节点复制过来，然后再删除下一个节点
         ListNode nextNode = node.next;

@@ -37,7 +37,7 @@ import java.util.List;
 import java.util.Set;
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution448 {
     //鸽笼问题，可以让当前数组充当哈希表的结构。因为每个数如果存在于数组中，则使数组中的对应下标+n。这样，将<n的值写入下标中。
     public static List<Integer> findDisappearedNumbers(int[] nums) {
         int n = nums.length;

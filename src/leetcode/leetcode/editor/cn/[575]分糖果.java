@@ -48,7 +48,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution575 {
     public int distributeCandies(int[] candyType) {
         int len = candyType.length;
         int maxEatCount = len / 2;
