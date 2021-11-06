@@ -1,5 +1,7 @@
 package offer;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * 实现线程安全的单例模式
  */
@@ -101,5 +103,12 @@ class Singleton5 {
     // 这样不仅能确保线程安全也能保证Singleton类的唯一性，所以推荐使用静态内部类单例模式。
     private static class SingletonHolder {
         private static final Singleton5 sInstance = new Singleton5();
+    }
+
+    public static void main(String[] args) {
+        AtomicInteger atomicInteger=new AtomicInteger(5);
+        System.out.println(atomicInteger.compareAndSet(5, 2019)+"\t current data : "+ atomicInteger.get());
+        //修改失败
+        System.out.println(atomicInteger.compareAndSet(5, 1024)+"\t current data : "+ atomicInteger.get());
     }
 }
